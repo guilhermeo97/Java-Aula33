@@ -1,5 +1,8 @@
 package com.t3.manytomany.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,4 +17,9 @@ public class Group {
 
     private String name;
     
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+    fetch = FetchType.EAGER,
+    mappedBy = "groups"
+    )
+    private Set<Student> students = new HashSet<>();
 }
